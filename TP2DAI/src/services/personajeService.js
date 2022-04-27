@@ -48,6 +48,7 @@ export class personajeService {
 
         const pool = await sql.connect(config);
         const response = await pool.request()
+            .input('Id',sql.Int, personaje?.id ?? 0)
             .input('Nombre',sql.VarChar(50), personaje?.nombre ?? '')
             .input('Edad',sql.Int, personaje?.edad ?? false)
             .input('Peso',sql.Int, personaje?.peso ?? 0)

@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import PersonajeRuta from "./src/controller/personajeController.js";
 
-
 const app=express();
 const port=5000;
 

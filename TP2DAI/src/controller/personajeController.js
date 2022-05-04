@@ -7,7 +7,9 @@ const personajesService = new personajeService();
 
 
 router.get('/', async (req, res) => {
-    const personajes = await personajesService.getAllPersonajes();
+  const nombre = req.query.nombre
+  const edad = req.query.edad
+    const personajes = await personajesService.getAllPersonajes(nombre,edad);
   
     console.log("getAll");
 

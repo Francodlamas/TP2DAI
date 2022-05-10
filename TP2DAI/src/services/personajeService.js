@@ -9,7 +9,16 @@ export class personajeService {
     getAllPersonajes = async (nombre,edad) => {
         console.log('This is a function on the service');
         const pool = await sql.connect(config);
-        const response = await pool.request().input('nombre',sql.VarChar, nombre,'edad',sql.Int, edad).query(`SELECT * from ${personajeTabla} where nombre=@nombre and edad=@edad`);
+        let response;
+        if(nombre==null){
+             response = await pool.request().input('edad',sql.Int,edad).query(`SELECT * from ${personajeTabla} where edad=@edad`);
+        }
+        else if(edad==null){
+             response = await pool.request().input('nombre',sql.VarChar,nombre).query(`SELECT * from ${personajeTabla} where nombre=@nombre `);
+        }else{
+             response = await pool.request().input('nombre',sql.VarChar,nombre).input('edad',sql.Int, edad).query(`SELECT * from ${personajeTabla} where nombre=@nombre and edad=@edad`);
+        }
+       
         console.log(response)
 
         return response.recordset;

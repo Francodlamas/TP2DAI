@@ -6,7 +6,18 @@ const personajeTabla = process.env.DB_TABLA_PERSONAJE;
 
 export class personajeService {
 
-    getAllPersonajes = async (nombre,edad) => {
+
+    getAllPersonajes = async () => {
+        console.log('This is a function on the service');
+
+        const pool = await sql.connect(config);
+        const response = await pool.request().query(`SELECT * from ${personajeTabla}`);
+        console.log(response)
+
+        return response.recordset;
+    }
+
+    buscador = async (nombre,edad) => {
         console.log('This is a function on the service');
         const pool = await sql.connect(config);
         let response;

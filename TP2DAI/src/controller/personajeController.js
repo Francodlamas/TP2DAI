@@ -1,23 +1,33 @@
 import { Router } from 'express';
 import { personajeService } from '../services/personajeService.js';
+import { Authenticate } from '../common/jwt.strategy.js';
+
+
 
 const router = Router();
 const personajesService = new personajeService();
 
 
+router.get('/',Authenticate, async (req, res) => {
+  console.log(`This is a get operation`);
+  
+  const personaje = await personajesService.getAllPersonajes();
 
-router.get('/', async (req, res) => {
+  return res.status(200).json(personaje);
+});
+
+router.get('/buscador',Authenticate, async (req, res) => {
   const nombre = req.query.nombre
   const edad = req.query.edad
-    const personajes = await personajesService.getAllPersonajes(nombre,edad);
+    const personajes = await personajesService.buscador(nombre,edad);
   
-    console.log("getAll");
+    console.log("buscador");
 
     return res.status(200).json(personajes);
 
   });
 
-  router.get('/:id', async (req, res) => {
+  router.get('/:id',Authenticate, async (req, res) => {
     const id = req.params.id
     console.log(`Request URL Param: ${id}`);
     console.log(`This is a get operation`);
@@ -27,7 +37,7 @@ router.get('/', async (req, res) => {
     return res.status(200).json(personaje);
   });
   
-  router.post('/', async (req, res) => {
+  router.post('/',Authenticate, async (req, res) => {
     console.log(`This is a post operation`);
 
     const personaje = await personajesService.createPersonaje(req.body);
@@ -35,7 +45,7 @@ router.get('/', async (req, res) => {
     return res.status(201).json(personaje);
   });
 
-  router.put('/:id', async (req, res) => {
+  router.put('/:id',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${req.params.id}`);
     console.log(`This is a put operation`);
     
@@ -44,7 +54,7 @@ router.get('/', async (req, res) => {
     return res.status(200).json(personaje);
   });
   
-  router.delete('/:id', async (req, res) => {
+  router.delete('/:id',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${req.params.id}`);
     console.log(`This is a delete operation`);
     

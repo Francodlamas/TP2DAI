@@ -74,7 +74,7 @@ export class personajeService {
             .input('Peso',sql.Int, personaje?.peso ?? 0)
             .input('Historia',sql.VarChar(50), personaje?.Historia ?? 0)
             .input('Imagen',sql.VarChar(50), personaje?.Imagen ?? '')
-            .query(`UPDATE personaje SET Nombre = @Nombre, LibreGluten = @LibreGluten, Importe = @Importe, Descripcion = @Descripcion WHERE id = @Id`);
+            .query(`UPDATE personaje SET Nombre = @Nombre, Edad = @Edad, Peso = @Peso, Historia = @Historia, Imagen = @Imagen  WHERE id = @Id`);
         console.log(response)
 
         return response.recordset;
@@ -86,9 +86,23 @@ export class personajeService {
         const pool = await sql.connect(config);
         const response = await pool.request()
             .input('id',sql.Int, id)
-            .query(`DELETE FROM ${pizzaTabla} WHERE id = @id`);
+            .query(`DELETE FROM ${personajeTabla} WHERE id = @id`);
         console.log(response)
 
         return response.recordset;
     }
+
+    detallePersonaje = async (id) => {
+        console.log('This is a function on the service');
+
+        const pool = await sql.connect(config);
+        const response = await pool.request()
+            .input('id',sql.Int, id)
+            .query(`SELECT * from ${personajeTabla} INNER JOIN PersonajeXPelicula ON Personaje.id= PersonajeXPelicula.idPersonajeAsociado where id = @id`);
+        console.log(response)
+
+        return response.recordset[0];
+    }
+
+
 }

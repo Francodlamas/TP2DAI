@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-export class loginService {}
+export class loginService {
 
 
-const getRandomString = () => {
+ getRandomString = () => {
   var result = "";
   var characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -12,12 +12,12 @@ const getRandomString = () => {
   for (var i = 0; i < 18; i++) {
     result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
+ return result;
+   
+}
 
-  return result;
-};
-
-const getSignedToken = () => {
-  const userId = getRandomString();
+ getSignedToken = () => {
+  const userId = this.getRandomString();
   const userMail = `${userId}@example.com`;
   const token = jwt.sign(
     {
@@ -32,7 +32,9 @@ const getSignedToken = () => {
       expiresIn: 60 * 24 * 24,
     }
   );
-
+ 
+ 
   return token;
-};
+}
 
+}

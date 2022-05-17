@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import PersonajeRuta from "./src/controller/personajeController.js";
+import PeliculaRuta from "./src/controller/peliculaController.js";
 import passport from 'passport';
 import {jwtStrategy} from './src/common/jwt.strategy.js';
 import LoginRuta from "./src/controller/loginController.js";
@@ -16,6 +17,7 @@ app.use(passport.initialize());
 
 app.use('/personaje',PersonajeRuta);
 app.use('/login',LoginRuta);
+app.use('/pelicula',PeliculaRuta);
 
 app.listen(port,()=>{
 

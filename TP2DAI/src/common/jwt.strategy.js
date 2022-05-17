@@ -5,7 +5,7 @@ import "dotenv/config";
 const opt = {
   secretOrKey: process.env.AUTH0_HS256_KEY,
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  issuer: `${process.env.AUTH_ISSUER_URL}`,
+  issuer: "http://personaje.ort/",
   algorithms: ["HS256"],
 };
 

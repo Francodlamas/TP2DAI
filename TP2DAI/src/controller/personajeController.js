@@ -8,15 +8,9 @@ const router = Router();
 const personajesService = new personajeService();
 
 
+
+
 router.get('/',Authenticate, async (req, res) => {
-  console.log(`This is a get operation`);
-  
-  const personaje = await personajesService.getAllPersonajes();
-
-  return res.status(200).json(personaje);
-});
-
-router.get('/buscador',Authenticate, async (req, res) => {
   const nombre = req.query.nombre
   const edad = req.query.edad
     const personajes = await personajesService.buscador(nombre,edad);
@@ -36,6 +30,7 @@ router.get('/buscador',Authenticate, async (req, res) => {
   
     return res.status(200).json(personaje);
   });
+
   
   router.post('/',Authenticate, async (req, res) => {
     console.log(`This is a post operation`);
@@ -60,6 +55,15 @@ router.get('/buscador',Authenticate, async (req, res) => {
     
     const personaje = await personajesService.deletePersonajeById(req.params.id);
     
+    return res.status(200).json(personaje);
+  });
+  router.get('/:id',Authenticate, async (req, res) => {
+    const id = req.params.id
+    console.log(`Request URL Param: ${id}`);
+    console.log(`This is a get operation`);
+  
+    const personaje = await personajesService.detallePersonaje(id);
+  
     return res.status(200).json(personaje);
   });
 

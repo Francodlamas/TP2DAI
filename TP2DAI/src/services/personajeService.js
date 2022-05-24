@@ -3,31 +3,24 @@ import config from '../../db.js'
 import 'dotenv/config'
 
 const personajeTabla = process.env.DB_TABLA_PERSONAJE;
+const peliculaTabla = process.env.DB_TABLA_PELICULA;
 
 export class personajeService {
-
-
-    getAllPersonajes = async () => {
-        console.log('This is a function on the service');
-
-        const pool = await sql.connect(config);
-        const response = await pool.request().query(`SELECT * from ${personajeTabla}`);
-        console.log(response)
-
-        return response.recordset;
-    }
 
     buscador = async (nombre,edad) => {
         console.log('This is a function on the service');
         const pool = await sql.connect(config);
         let response;
-        if(nombre==null){
-             response = await pool.request().input('edad',sql.Int,edad).query(`SELECT * from ${personajeTabla} where edad=@edad`);
+        if(nombre==null && edad==null){
+            response = await pool.request().query(`SELECT imagen,nombre,id from ${personajeTabla}`);
+        }
+        else if(nombre==null){
+             response = await pool.request().input('edad',sql.Int,edad).query(`SELECT imagen,nombre,id from ${personajeTabla} where edad=@edad`);
         }
         else if(edad==null){
-             response = await pool.request().input('nombre',sql.VarChar,nombre).query(`SELECT * from ${personajeTabla} where nombre=@nombre `);
+             response = await pool.request().input('nombre',sql.VarChar,nombre).query(`SELECT imagen,nombre,id from ${personajeTabla} where nombre=@nombre `);
         }else{
-             response = await pool.request().input('nombre',sql.VarChar,nombre).input('edad',sql.Int, edad).query(`SELECT * from ${personajeTabla} where nombre=@nombre and edad=@edad`);
+             response = await pool.request().input('nombre',sql.VarChar,nombre).input('edad',sql.Int, edad).query(`SELECT imagen,nombre,id from ${personajeTabla} where nombre=@nombre and edad=@edad`);
         }
        
         console.log(response)
@@ -46,6 +39,7 @@ export class personajeService {
 
         return response.recordset[0];
     }
+
 
     createPersonaje = async (personaje) => {
         console.log('This is a function on the service');
@@ -80,7 +74,7 @@ export class personajeService {
         return response.recordset;
     }
 
-    deletePizzaById = async (id) => {
+    deletePersonajeById = async (id) => {
         console.log('This is a function on the service');
 
         const pool = await sql.connect(config);
@@ -98,7 +92,7 @@ export class personajeService {
         const pool = await sql.connect(config);
         const response = await pool.request()
             .input('id',sql.Int, id)
-            .query(`SELECT * from ${personajeTabla} INNER JOIN PersonajeXPelicula ON Personaje.id= PersonajeXPelicula.idPersonajeAsociado where id = @id`);
+            .query(`SELECT Peliculas.titulo * from ${personajeTabla}  INNER JOIN PersonajeXPelicula ON Personaje.id= PersonajeXPelicula.idPersonajeAsociado INNER JOIN Pelicula ON Pelicula.id= pelicula.idpelicula where id = @id`);
         console.log(response)
 
         return response.recordset[0];

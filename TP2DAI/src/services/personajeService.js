@@ -90,8 +90,8 @@ export class personajeService {
             INNER JOIN Pelicula ON Pelicula.id= PersonajeXPelicula.IdPeliculasAsociadas where Personaje.id = @id`);
            
         console.log(response)
-
-        return response.recordset[0];
+      
+        return response.recordset;
     }
 
     

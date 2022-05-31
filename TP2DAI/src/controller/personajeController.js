@@ -21,15 +21,6 @@ router.get('/',Authenticate, async (req, res) => {
 
   });
 
-  router.get('/:id',Authenticate, async (req, res) => {
-    const id = req.params.id
-    console.log(`Request URL Param: ${id}`);
-    console.log(`This is a get operation`);
-  
-    const personaje = await personajesService.getPersonajeById(id);
-  
-    return res.status(200).json(personaje);
-  });
 
   
   router.post('/',Authenticate, async (req, res) => {
@@ -43,11 +34,12 @@ router.get('/',Authenticate, async (req, res) => {
   router.put('/:id',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${req.params.id}`);
     console.log(`This is a put operation`);
-    
-    const personaje = await personajesService.updatePersonajeById(req.body);
+    const id = req.params.id;
+    const personaje = await personajesService.updatePersonajeById(id,req.body);
     
     return res.status(200).json(personaje);
   });
+  
   
   router.delete('/:id',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${req.params.id}`);

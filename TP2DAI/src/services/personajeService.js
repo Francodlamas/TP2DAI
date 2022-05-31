@@ -24,21 +24,11 @@ export class personajeService {
         }
        
         console.log(response)
-
+    
         return response.recordset;
     }
 
-    getPersonajeById = async (id) => {
-        console.log('This is a function on the service');
 
-        const pool = await sql.connect(config);
-        const response = await pool.request()
-            .input('id',sql.Int, id)
-            .query(`SELECT * from ${personajeTabla} where id = @id`);
-        console.log(response)
-
-        return response.recordset[0];
-    }
 
 
     createPersonaje = async (personaje) => {
@@ -57,22 +47,23 @@ export class personajeService {
         return response.recordset;
     }
 
-    updatePersonajeById = async (personaje) => {
+    updatePersonajeById = async (id,personaje) => {
         console.log('This is a function on the service');
 
         const pool = await sql.connect(config);
         const response = await pool.request()
-            .input('Id',sql.Int, personaje?.id ?? 0)
+            .input('id',sql.Int, id ?? 0)
             .input('Nombre',sql.VarChar(50), personaje?.nombre ?? '')
             .input('Edad',sql.Int, personaje?.edad ?? false)
             .input('Peso',sql.Int, personaje?.peso ?? 0)
-            .input('Historia',sql.VarChar(50), personaje?.Historia ?? 0)
-            .input('Imagen',sql.VarChar(50), personaje?.Imagen ?? '')
-            .query(`UPDATE personaje SET Nombre = @Nombre, Edad = @Edad, Peso = @Peso, Historia = @Historia, Imagen = @Imagen  WHERE id = @Id`);
+            .input('Historia',sql.VarChar(50), personaje?.historia ?? 0)
+            .input('Imagen',sql.VarChar(50), personaje?.imagen ?? '')
+            .query(`UPDATE ${personajeTabla} SET nombre = @Nombre, edad = @Edad, peso = @Peso, historia = @Historia, imagen = @Imagen  WHERE id = @id`);
         console.log(response)
 
         return response.recordset;
     }
+
 
     deletePersonajeById = async (id) => {
         console.log('This is a function on the service');
@@ -90,13 +81,18 @@ export class personajeService {
         console.log('This is a function on the service');
 
         const pool = await sql.connect(config);
-        const response = await pool.request()
+        const Personaje = await pool.request()
             .input('id',sql.Int, id)
-            .query(`SELECT Peliculas.titulo * from ${personajeTabla}  INNER JOIN PersonajeXPelicula ON Personaje.id= PersonajeXPelicula.idPersonajeAsociado INNER JOIN Pelicula ON Pelicula.id= pelicula.idpelicula where id = @id`);
+            .query(`SELECT * from ${personajeTabla} where id = @id`);
+            const response = await pool.request()
+            .input('id',sql.Int, id)
+            .query(`SELECT Pelicula.titulo from  ${personajeTabla} INNER JOIN PersonajeXPelicula ON Personaje.id= PersonajeXPelicula.idPersonajeAsociado 
+            INNER JOIN Pelicula ON Pelicula.id= PersonajeXPelicula.IdPeliculasAsociadas where Personaje.id = @id`);
+           
         console.log(response)
 
         return response.recordset[0];
     }
 
-
+    
 }

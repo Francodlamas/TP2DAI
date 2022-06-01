@@ -13,7 +13,9 @@ const personajesService = new personajeService();
 router.get('/',Authenticate, async (req, res) => {
   const nombre = req.query.nombre
   const edad = req.query.edad
-    const personajes = await personajesService.buscador(nombre,edad);
+  const peso = req.query.peso
+  const idMovie = req.query.idMovie
+    const personajes = await personajesService.buscador(nombre,edad,peso,idMovie);
   
     console.log("buscador");
 

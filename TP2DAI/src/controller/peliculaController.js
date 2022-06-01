@@ -22,7 +22,7 @@ router.get('/',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${id}`);
     console.log(`This is a get operation`);
   
-    const personaje = await peliService.getPersonajeById(id);
+    const personaje = await peliService.detallePelicula(id);
   
     return res.status(200).json(personaje);
   });

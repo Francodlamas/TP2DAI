@@ -73,6 +73,7 @@ export class personajeService {
         return response.recordset;
     }
 
+    
 
     deletePersonajeById = async (id) => {
         console.log('This is a function on the service');

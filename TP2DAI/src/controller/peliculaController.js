@@ -29,8 +29,9 @@ router.put('/:id',Authenticate, async (req, res) => {
 
 router.get('/',Authenticate, async (req, res) => {
     console.log(`This is a get operation`);
-    
-    const pelicula = await peliService.getMovies();
+    const titulo = req.query.titulo
+    const order = req.query.order
+    const pelicula = await peliService.buscador(titulo,order);
   
     return res.status(200).json(pelicula);
   });
@@ -48,9 +49,9 @@ router.get('/',Authenticate, async (req, res) => {
     console.log(`Request URL Param: ${id}`);
     console.log(`This is a get operation`);
   
-    const personaje = await peliService.detallePelicula(id);
+    const pelicula = await peliService.detallePelicula(id);
   
-    return res.status(200).json(personaje);
+    return res.status(200).json(pelicula);
   });
 
 

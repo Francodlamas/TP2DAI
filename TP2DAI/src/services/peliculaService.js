@@ -66,15 +66,15 @@ export class peliculaService {
         console.log(aux)
         return aux;
     }
-    buscador = async (titulo) => {
+    buscador = async (titulo,order) => {
         console.log('This is a function on the service');
         const pool = await sql.connect(config);
         let response;
         if(titulo==null){
-             response = await pool.request().query(`SELECT * from ${peliculaTabla}`);
+             response = await pool.request().query(`SELECT * from ${peliculaTabla} order by fechaCreacion ${order??'asc'}`);
         }
         else{
-             response = await pool.request().input('titulo',sql.VarChar,titulo).query(`SELECT * from ${peliculaTabla} where titulo=@titulo`);
+             response = await pool.request().input('titulo',sql.VarChar,titulo).query(`SELECT * from ${peliculaTabla} where titulo=@titulo order by fechaCreacion ${order??'asc'} `);
         }
        
         console.log(response)

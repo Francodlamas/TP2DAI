@@ -3,7 +3,7 @@ import config from '../../db.js'
 import 'dotenv/config'
 
 const personajeTabla = process.env.DB_TABLA_PERSONAJE;
-const peliculaTabla = process.env.DB_TABLA_PELICULA;
+
 
 export class personajeService {
 
@@ -73,7 +73,7 @@ export class personajeService {
         return response.recordset;
     }
 
-    
+
 
     deletePersonajeById = async (id) => {
         console.log('This is a function on the service');

@@ -4,7 +4,6 @@ import 'dotenv/config'
 
 const peliculaTabla = process.env.DB_TABLA_PELICULA;
 const PersonajeXPelicula=process.env.DB_TABLA_PERSONAJEXPELICULA;
-const personajeTabla = process.env.DB_TABLA_PERSONAJE;
 export class peliculaService {
 
     createPelicula = async (pelicula) => {

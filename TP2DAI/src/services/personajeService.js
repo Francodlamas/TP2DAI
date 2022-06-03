@@ -36,10 +36,6 @@ export class personajeService {
     
         return response.recordset;
     }
-
-
-
-
     createPersonaje = async (personaje) => {
         console.log('This is a function on the service');
 

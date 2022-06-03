@@ -1,0 +1,358 @@
+{
+	"info": {
+		"_postman_id": "6a0633e3-2b41-4083-9703-0f3471689d4a",
+		"name": "TP2DAI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				},
+				"description": "Para autenticar los endpoints\r\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Personaje",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiY3VzdG9tIHBheWxvYWQiLCJ1c2VyRW1haWwiOiJaaDFNWXBHSVhMRVVEczNQc01AZXhhbXBsZS5jb20iLCJpYXQiOjE2NTQyNTUxOTcsImV4cCI6MTY1NDI4OTc1NywiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3QvIl0sImlzcyI6Imh0dHA6Ly9wZXJzb25hamUub3J0LyIsInN1YiI6IlpoMU1ZcEdJWExFVURzM1BzTSJ9.QJ49JSOEuS2kKyRywGj51nV_NCB50WdvdDTQqBW3IAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "            \"nombre\": \"\",\r\n            \"edad\": ,\r\n            \"peso\": ,\r\n            \"historia\": \"\",\r\n            \"imagen\": \"\",",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get personajes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiY3VzdG9tIHBheWxvYWQiLCJ1c2VyRW1haWwiOiJaaDFNWXBHSVhMRVVEczNQc01AZXhhbXBsZS5jb20iLCJpYXQiOjE2NTQyNTUxOTcsImV4cCI6MTY1NDI4OTc1NywiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3QvIl0sImlzcyI6Imh0dHA6Ly9wZXJzb25hamUub3J0LyIsInN1YiI6IlpoMU1ZcEdJWExFVURzM1BzTSJ9.QJ49JSOEuS2kKyRywGj51nV_NCB50WdvdDTQqBW3IAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get detalle personaje",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiY3VzdG9tIHBheWxvYWQiLCJ1c2VyRW1haWwiOiJaaDFNWXBHSVhMRVVEczNQc01AZXhhbXBsZS5jb20iLCJpYXQiOjE2NTQyNTUxOTcsImV4cCI6MTY1NDI4OTc1NywiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3QvIl0sImlzcyI6Imh0dHA6Ly9wZXJzb25hamUub3J0LyIsInN1YiI6IlpoMU1ZcEdJWExFVURzM1BzTSJ9.QJ49JSOEuS2kKyRywGj51nV_NCB50WdvdDTQqBW3IAE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update personaje",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar personaje",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear pelicula",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/characters",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update pelicula",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/pelicula/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pelicula",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar pelicula",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/pelicula/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pelicula",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get peliculas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/pelicula",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pelicula"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get detalle pelicula",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/pelicula/4",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"pelicula",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
